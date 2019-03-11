@@ -7,9 +7,45 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+
+function Event(props) {
+    const { event, onClick } = props;
+
+    return (
+        <Card style={styles.card}>
+            <CardContent>
+                <Typography>
+                    {event.city}
+                </Typography>
+                <Typography variant="h5" component="h2">
+                    {event.name}
+                </Typography>
+                <Typography>
+                    {event.type}
+                </Typography>
+                <Typography>
+                    {event.startDate}
+                </Typography>
+                <Typography>
+                    Is favourite: {event.favourite.toString()}
+                </Typography>
+            </CardContent>
+            <CardActions>
+                <Button onClick={onClick} size="small">Add to favourites</Button>
+            </CardActions>
+        </Card>
+    );
+}
+
+Event.propTypes = {
+    event: PropTypes.object.isRequired,
+    onClick: PropTypes.func.isRequired,
+}
+
 const styles = {
     card: {
-        minWidth: 275,
+        minWidth: 700,
+        maxWidth: 700,
     },
     bullet: {
         display: 'inline-block',
@@ -22,37 +58,6 @@ const styles = {
     pos: {
         marginBottom: 12,
     },
-};
-
-
-function Event(props) {
-    const { event } = props;
-
-    return (
-        <Card>
-            <CardContent>
-                <Typography gutterBottom>
-                    {event.city}
-                </Typography>
-                <Typography variant="h5" component="h2">
-                    {event.name}
-                </Typography>
-                <Typography>
-                    {event.type}
-                </Typography>
-                <Typography>
-                    {event.startDate}
-                </Typography>
-            </CardContent>
-            <CardActions>
-                <Button size="small">Learn More</Button>
-            </CardActions>
-        </Card>
-    );
-}
-
-Event.propTypes = {
-    classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(Event);
